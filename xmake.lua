@@ -1,0 +1,11 @@
+set_languages("c++latest")
+add_requires("pacman::gtkmm-4.0", {alias = "gtkmm"})
+add_requires("pacman::gtk4-layer-shell", {alias = "gtk-layer-shell"})
+
+target("a")
+  set_extension(".out")
+  set_kind("binary")
+  add_files("src/*.cpp")
+  set_policy("build.c++.modules", true)
+  add_packages("gtkmm")
+  add_packages("gtk-layer-shell")

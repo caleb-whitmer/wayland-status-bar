@@ -1,9 +1,30 @@
 #include<gtkmm.h>
-#include<gtk4-layer-shell.h>
 
 import std;
+import gui.status_bar;
 
-int main(void) {
-  std::println("Hello World!");
-  return 0;
+int main(int argc, char *argv[]) {
+  auto app = Gtk::Application::create("org.gtkmm.testing");
+
+  app->signal_activate().connect([&](){
+    auto r_builder = Gtk::Builder::create();
+    try {
+      r_builder->add_from_file("/home/seth/Development/wayland-status-bar/assets/interface.ui");
+    } catch (const Glib::FileError& ex) {
+      std::cerr << "FileError: " << ex.what() << std::endl;
+      return;
+    } catch (const Gtk::BuilderError& ex) {
+      std::cerr << "BuilderError: " << ex.what() << std::endl;
+      return;
+    }
+
+    auto p_status_bar = Gtk::Builder::get_widget_derived<StatusBar>(r_builder, "status_bar");
+    p_status_bar->set_visible(true);
+    p_status_bar->set_screen_location(StatusBar::TOP);
+    p_status_bar->override_style("window.background { background-color: red; }");
+
+    app->add_window(*p_status_bar);
+  });
+
+  return app->run(argc, argv);
 }

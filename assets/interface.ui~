@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <object class="GtkWindow" id="status_bar">
+  <object class="GtkWindow">
     <property name="can-focus">False</property>
     <property name="resizable">False</property>
     <property name="default-width">250</property>

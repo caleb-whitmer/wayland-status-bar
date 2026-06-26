@@ -2,6 +2,7 @@
 
 import std;
 import gui.status_bar;
+import component.hypr;
 
 int main(int argc, char *argv[]) {
   auto app = Gtk::Application::create("org.gtkmm.testing");
@@ -18,10 +19,9 @@ int main(int argc, char *argv[]) {
       return;
     }
 
-    auto p_status_bar = Gtk::Builder::get_widget_derived<StatusBar>(r_builder, "status_bar");
+    auto p_status_bar = Gtk::Builder::get_widget_derived<StatusBar>(r_builder, "status_bar", StatusBar::BOTTOM);
     p_status_bar->set_visible(true);
-    p_status_bar->set_screen_location(StatusBar::TOP);
-    p_status_bar->override_style("window.background { background-color: red; }");
+    p_status_bar->override_style("/home/seth/Development/wayland-status-bar/assets/stylesheet.css");
 
     app->add_window(*p_status_bar);
   });

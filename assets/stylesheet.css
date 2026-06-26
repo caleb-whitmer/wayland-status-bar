@@ -1,0 +1,27 @@
+window.background {
+  background-color: magenta;
+  /*background-color: transparent;*/
+}
+
+@keyframes anim {
+  from {min-height: unset;}
+  to {min-height: 200px;}
+}
+
+#base_frame {
+  all: unset;
+  background-color: black;
+  border-radius: 10px;
+  /*min-height: 200px;*/
+}
+
+#base_frame overshoot,
+#base_frame undershoot {
+  all: unset;
+}
+
+#base_frame:hover {
+  min-height: 200px;
+  animation-name: anim;
+  animation-duration: 0.5s;
+}
